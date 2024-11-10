@@ -1,12 +1,14 @@
-version: '3.5'
+#version: '3.5' / removed per new specs
 
 services:
   cups:
     container_name: cups
     image: chuckcharlie/cups-avahi-airprint
     #build: .
-    restart: always
+    restart: unless-stopped
     network_mode: "host"
+    ports:
+      - "631:631"
     environment:
       CUPSADMIN: cups
       CUPSPASSWORD: cups
